@@ -1,36 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Divider, 
-  Typography, 
-  Button,
-  TextField,
-  Snackbar,
-  Backdrop,
-  CircularProgress,
-} from '@material-ui/core'
-import useStyles from './styles';
+import {
+  Backdrop, Button, CircularProgress, Divider, Snackbar, TextField, Typography
+} from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 import InputSenha from '../../components/InputSenha';
-
-import { useForm } from 'react-hook-form';
-import Alert from '@material-ui/lab/Alert';
-import { put } from '../../services/ApiClient';
 import useAuth from '../../hook/useAuth';
 import useLoja from '../../hook/useLoja';
+import { put } from '../../services/ApiClient';
+import useStyles from './styles';
+
 
 function EdicaoPerfil() {
   const classes = useStyles();
   const history = useHistory();
-  const [empty, setEmpty] = useState([]);
   const { token } = useAuth();
   const { atualizar } = useLoja();
   const { handleSubmit, register } = useForm();
   const [erro, setErro] = useState('');
   const [carregando, setCarregando] = useState(false);
-  
+
   useEffect(() => {
 
-  },[]);
+  }, []);
 
   async function onSubmit(data) {
     if (data.senha !== data.senhaRepetida) {
@@ -48,7 +41,7 @@ function EdicaoPerfil() {
 
       if (erro) {
         setErro(dados);
-        return; 
+        return;
       }
 
       if (dadosAtualizados.nome_loja) {
@@ -70,12 +63,12 @@ function EdicaoPerfil() {
         <TextField label="Seu nome" {...register('nome')} />
         <TextField label="Nome da loja" {...register('nome_loja')} />
         <TextField label="E-mail"  {...register('email')} />
-        <InputSenha label="Nova senha" register={() => register('senha')}/>
+        <InputSenha label="Nova senha" register={() => register('senha')} />
         <InputSenha label="Repita a nova senha" register={() => register('senhaRepetida')} />
       </div>
       <Divider className={classes.divider} />
       <Link to="/perfil" className={classes.link}>CANCELAR</Link>
-      <Button 
+      <Button
         className={classes.botao}
         type="submit"
       >EDITAR PERFIL</Button>

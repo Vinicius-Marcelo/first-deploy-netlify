@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Divider, 
-  Typography, 
-  Grid,
-  Button,
-  Snackbar,
-  Backdrop,
-  CircularProgress,
-} from '@material-ui/core'
-import Produto from '../../components/Produto';
-import useStyles from './styles';
-import { useHistory } from 'react-router';
-import { get } from '../../services/ApiClient';
-import useAuth from '../../hook/useAuth';
+import {
+  Backdrop, Button, CircularProgress, Divider, Grid, Snackbar, Typography
+} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import Produto from '../../components/Produto';
+import useAuth from '../../hook/useAuth';
+import { get } from '../../services/ApiClient';
+import useStyles from './styles';
 
 function Produtos() {
   const classes = useStyles();
@@ -61,7 +55,7 @@ function Produtos() {
         ))}
       </Grid>
       <Divider className={classes.divider} />
-      <Button 
+      <Button
         className={classes.botao}
         onClick={() => history.push('/produtos/novo')}
       >ADICIONAR PRODUTO</Button>

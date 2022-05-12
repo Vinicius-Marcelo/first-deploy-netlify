@@ -1,27 +1,18 @@
-import React, { useState } from 'react';
-
 import {
-  Card,
+  Backdrop, Button, Card,
   CardActionArea,
   CardContent,
-  CardMedia,
-  Button,
-  Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Snackbar,
-  Backdrop,
-  CircularProgress
+  CardMedia, CircularProgress, Dialog, DialogActions, DialogContent,
+  DialogContentText, DialogTitle, Snackbar, Typography
 } from '@material-ui/core';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
-import useStyles from './styles';
-import { del } from '../../services/ApiClient';
-import { useHistory } from 'react-router';
-import useAuth from '../../hook/useAuth';
 import Alert from '@material-ui/lab/Alert';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import useAuth from '../../hook/useAuth';
+import { del } from '../../services/ApiClient';
+import useStyles from './styles';
+
 
 function Produto({ descricao, estoque, id, imagem, nome, preco, recarregar }) {
   const classes = useStyles();
@@ -52,7 +43,7 @@ function Produto({ descricao, estoque, id, imagem, nome, preco, recarregar }) {
   return (
     <>
       <Card className={classes.root}>
-        <Button className={classes.botao} onClick={() => setModalAberto(true)} ><DeleteSweepIcon/></Button>
+        <Button className={classes.botao} onClick={() => setModalAberto(true)} ><DeleteSweepIcon /></Button>
         <CardActionArea onClick={() => history.push(`/produtos/${id}/editar`, { id, nome, imagem })}>
           <CardMedia
             className={classes.media}

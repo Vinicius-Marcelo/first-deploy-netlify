@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { 
-  Divider, 
-  Typography, 
-  Button,
-  TextField,
-  Snackbar,
-  Backdrop,
-  CircularProgress,
-} from '@material-ui/core'
-import useStyles from './styles';
-import { useHistory } from 'react-router';
+import {
+  Backdrop, Button, CircularProgress, Divider, Snackbar, TextField, Typography
+} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import { get } from '../../services/ApiClient';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import useAuth from '../../hook/useAuth';
+import { get } from '../../services/ApiClient';
+import useStyles from './styles';
 
 function Perfil() {
   const classes = useStyles();
@@ -24,13 +18,13 @@ function Perfil() {
 
   useEffect(() => {
     async function carregarUsuario() {
-      try {  
+      try {
         setCarregando(true);
         setErro('');
 
         const { dados, erro } = await get('perfil', token);
-        
-        if(erro) {
+
+        if (erro) {
           setErro(dados);
           return;
         }
@@ -55,7 +49,7 @@ function Perfil() {
         <TextField label="E-mail" disabled value={usuario.email} />
       </div>
       <Divider className={classes.divider} />
-      <Button 
+      <Button
         className={classes.botao}
         onClick={() => history.push('/perfil/editar')}
       >EDITAR PERFIL</Button>
